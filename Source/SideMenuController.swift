@@ -188,7 +188,6 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Configurations -
