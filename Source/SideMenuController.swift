@@ -184,48 +184,13 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(SideMenuController.repositionViews), name: .UIApplicationWillChangeStatusBarFrame, object: UIApplication.shared)
     }
     
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: { _ in
-            self.repositionViews()
-        }, completion: nil)
     }
     
     // MARK: - Configurations -
-    
-    func repositionViews() {
-        
-        if sidePanelVisible {
-            toggle()
-        }
-        
-        UIView.animate(withDuration: 0.35) {
-            self.centerPanel.frame = self.centerPanelFrame
-            // reposition side panel
-            self.sidePanel.frame = self.sidePanelFrame
-            
-            // hide or show the view under the status bar
-            self.set(statusUnderlayAlpha: self.sidePanelVisible ? 1 : 0)
-            
-            // reposition the center shadow view
-            if let overlay = self.centerPanelOverlay {
-                overlay.frame = self.centerPanelFrame
-            }
-            
-            self.view.layoutIfNeeded()
-        }
-        
-        previousStatusBarHeight = statusBarHeight
-    }
     
     func configureViews(){
         
