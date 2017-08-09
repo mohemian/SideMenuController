@@ -190,6 +190,20 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillDisappear(animated)
     }
     
+    // MARK: - Orientation -
+    
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
+    open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .portrait
+    }
+    
+    open override var shouldAutorotate: Bool {
+        return false
+    }
+    
     // MARK: - Configurations -
     
     func configureViews(){
