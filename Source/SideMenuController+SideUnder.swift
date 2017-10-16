@@ -95,7 +95,7 @@ extension SideMenuController {
         UIView.panelAnimation( duration, animations: { 
             self.centerPanel.frame = centerPanelFrame
             self.set(statusUnderlayAlpha: hidden ? 0 : 1)
-        }) { () in
+        }) {
             if hidden {
                 self.setSideShadow(hidden: hidden)
             }
