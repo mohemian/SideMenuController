@@ -109,7 +109,7 @@ extension UIWindow {
 
 public extension UIViewController {
     
-    public var sideMenuController: SideMenuController? {
+    @objc public var sideMenuController: SideMenuController? {
         return sideMenuControllerForViewController(self)
     }
     

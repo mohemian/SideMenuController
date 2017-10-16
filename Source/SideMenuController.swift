@@ -125,7 +125,7 @@ public extension SideMenuController {
     }
 }
 
-open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
+@objc open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - Instance variables -
     
@@ -133,7 +133,7 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     open weak var delegate: SideMenuControllerDelegate?
     open static var preferences: Preferences = Preferences()
-    internal(set) open var sidePanelVisible = false
+    @objc open var sidePanelVisible = false
     
     // MARK: Internal
     
@@ -142,8 +142,8 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
         return type(of: self).preferences
     }()
     
-    fileprivate(set) open var centerViewController: UIViewController!
-    fileprivate(set) open var sideViewController: UIViewController!
+    @objc open var centerViewController: UIViewController!
+    @objc open var sideViewController: UIViewController!
     var centerNavController: UINavigationController? {
         return centerViewController as? UINavigationController
     }
