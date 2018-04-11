@@ -23,10 +23,17 @@
 
 import Foundation
 
-let DefaultStatusBarHeight : CGFloat = 20
+var DefaultStatusBarHeight: CGFloat {
+    if UIScreen.main.nativeBounds.height == 2436 {
+        // iPhone X
+        return 44
+    }
+    // All other iPhones/iPads
+    return 20
+}
 
 extension UIView {
-    class func panelAnimation(_ duration : TimeInterval, animations : @escaping (()->()), completion : (()->())? = nil) {
+    class func panelAnimation(_ duration: TimeInterval, animations: @escaping (()->()), completion: (()->())? = nil) {
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: animations) { _ in
             completion?()
         }
