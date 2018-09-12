@@ -203,6 +203,10 @@ public extension SideMenuController {
     open override var shouldAutorotate: Bool {
         return false
     }
+
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     // MARK: - Configurations -
     
