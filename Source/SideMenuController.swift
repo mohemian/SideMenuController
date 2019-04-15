@@ -132,7 +132,7 @@ public extension SideMenuController {
     // MARK: Public
     
     open weak var delegate: SideMenuControllerDelegate?
-    open static var preferences: Preferences = Preferences()
+    public static var preferences: Preferences = Preferences()
     @objc open var sidePanelVisible = false
     
     // MARK: Internal
