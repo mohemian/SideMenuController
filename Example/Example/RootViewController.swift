@@ -33,6 +33,7 @@ class RootViewController: UIViewController {
     @IBAction func programmaticAction() {
         
         let sideMenuViewController = SideMenuController()
+        sideMenuViewController.modalPresentationStyle = .fullScreen
         
         // create the view controllers for center containment
         let vc1 = UIViewController()

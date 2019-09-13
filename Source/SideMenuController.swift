@@ -141,6 +141,11 @@ public extension SideMenuController {
     lazy var _preferences: Preferences = {
         return type(of: self).preferences
     }()
+    var statusBarIsHidden: Bool = false {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
     
     @objc open var centerViewController: UIViewController!
     @objc open var sideViewController: UIViewController!
@@ -189,6 +194,10 @@ public extension SideMenuController {
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
+
+    override open var prefersStatusBarHidden: Bool {
+        return statusBarIsHidden
+    }
     
     // MARK: - Orientation -
     
@@ -206,6 +215,10 @@ public extension SideMenuController {
 
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+
+    open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return _preferences.animating.statusBarBehaviour.statusBarAnimation
     }
     
     // MARK: - Configurations -
@@ -254,8 +267,8 @@ public extension SideMenuController {
             return
         }
         
-        sbw?.set(hidden, withBehaviour: _preferences.animating.statusBarBehaviour)
-        
+        statusBarIsHidden = hidden
+
         if _preferences.animating.statusBarBehaviour == StatusBarBehaviour.horizontalPan {
             if !hidden {
                 centerPanelSShot?.removeFromSuperview()
@@ -363,15 +376,6 @@ public extension SideMenuController {
     }
     
     // MARK: - Computed variables -
-    
-    fileprivate var sbw: UIWindow? {
-        
-        let s = "status"
-        let b = "Bar"
-        let w = "Window"
-        
-        return UIApplication.shared.value(forKey: s+b+w) as? UIWindow
-    }
     
     fileprivate var showsStatusUnderlay: Bool {
         
